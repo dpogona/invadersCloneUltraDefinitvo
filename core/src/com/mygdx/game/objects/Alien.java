@@ -5,7 +5,7 @@ import com.badlogic.gdx.graphics.g2d.TextureRegion;
 import com.badlogic.gdx.math.Vector2;
 import com.mygdx.game.Assets;
 
-public class Alien {
+public class    Alien {
 
     enum State {
         LIVE, DYING, DEAD

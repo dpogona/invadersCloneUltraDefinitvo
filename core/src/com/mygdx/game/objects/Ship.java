@@ -9,7 +9,7 @@ import com.mygdx.game.Controls;
 public class Ship {
 
     enum State {
-        IDLE, LEFT, RIGHT, SHOOT;
+        IDLE, LEFT, RIGHT, SHOOT, DYING;
     }
 
     Vector2 position;
@@ -17,6 +17,8 @@ public class Ship {
     State state;
     float stateTime;
     float speed = 5;
+    int vidas = 3;
+    int puntos = 0;
 
     TextureRegion frame;
 
@@ -45,6 +47,8 @@ public class Ship {
             case SHOOT:
                 frame = assets.naveshoot.getKeyFrame(stateTime, true);
                 break;
+            case DYING:
+                frame = assets.navedying.getKeyFrame(stateTime,true);
             default:
                 frame = assets.naveidle.getKeyFrame(stateTime, true);
                 break;
@@ -70,7 +74,7 @@ public class Ship {
 
         if(Controls.isShootPressed()) {
             shoot();
-            assets.shootSound.play();
+           // assets.shootSound.play();
         }
 
         setFrame(assets);
@@ -98,6 +102,7 @@ public class Ship {
     }
 
     public void damage() {
+        vidas --;
 
     }
 }

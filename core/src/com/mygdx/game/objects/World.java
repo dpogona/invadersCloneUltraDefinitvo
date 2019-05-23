@@ -8,17 +8,24 @@ import com.mygdx.game.Assets;
 public class World {
     Space space;
     Ship ship;
-    AlienArmy alienArmy;
+    public AlienArmy alienArmy;
+    Interfaz interfaz;
+
+    public boolean gameover = false;
+    public boolean uwin = false;
 
     int WORLD_WIDTH, WORLD_HEIGHT;
-
+// Error al meter alienVelocidad y alienDescender
     public World(int WORLD_WIDTH, int WORLD_HEIGHT){
         this.WORLD_WIDTH = WORLD_WIDTH;
         this.WORLD_HEIGHT = WORLD_HEIGHT;
 
         space = new Space();
         ship = new Ship(WORLD_WIDTH/2);
+        // Intentar meter alienVelocidad y alienDescender
         alienArmy = new AlienArmy(WORLD_WIDTH, WORLD_HEIGHT);
+        interfaz = new Interfaz(ship,alienArmy);
+
     }
 
     public void render(float delta, SpriteBatch batch, Assets assets){
@@ -70,7 +77,7 @@ public class World {
                     if (Intersector.overlaps(shootRectangle, alienRectangle)) {
                         alien.kill();
                         shoot.remove();
-                        assets.aliendieSound.play();
+                        //assets.aliendieSound.play();
                     }
                 }
             }

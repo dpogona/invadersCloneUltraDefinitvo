@@ -10,8 +10,9 @@ import java.util.Random;
 
 public class AlienArmy {
 
-    int x, y, maxX;
+    int x, y, maxX, bajarVelocidad;
 
+    boolean descender;
     float speed = 8f;
 
     Array<Alien> aliens;
@@ -83,14 +84,22 @@ public class AlienArmy {
             if(x > maxX){
                 x = maxX;
                 speed *= -1;
+                y -= bajarVelocidad;
+                descender = true;
             } else if(x < 0){
                 x = 0;
                 speed *= -1;
+                y -= bajarVelocidad;
+                descender = true;
             }
 
             for (Alien alien : aliens) {
                 alien.position.x += speed;
+                if (descender) {
+                    alien.position.y -= bajarVelocidad;
+                }
             }
+            descender = false;
         }
     }
 
@@ -102,7 +111,7 @@ public class AlienArmy {
 
             shoots.add(new AlienShoot(new Vector2(alien.position)));
 
-            assets.alienSound.play();
+            //assets.alienSound.play();
 
             shootTimer.set(random.nextFloat()%5+1);
         }
